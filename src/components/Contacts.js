@@ -23,16 +23,17 @@ class Contacts extends Component {
                 phone: '0123456789'
             }
         ]
-    }
+    };
 
     render() {
         const {contacts} = this.state;
         return (
-            <div>
+            //Fragment allows to remove unwanted div or elements
+            <React.Fragment>
                 {contacts.map(contact => (
                     <Contact key={contact.id} contact={contact}/>
                 ))}
-            </div>
+            </React.Fragment>
         );
     }
 }
