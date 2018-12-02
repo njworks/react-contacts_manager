@@ -15,13 +15,23 @@ class Contact extends Component {
         })
     };
 
+    //Access up component to Contacts.js to delete
+    onDeleteClick = () => {
+        this.props.deleteHandler();
+    };
+
     render() {
         const {name, email, phone} = this.props.contact;
         const {showContact} = this.state;
         return (
             <div className="card card-body mb-3">
                 <h4>{name}</h4>
-                <h3 onClick={this.onShowClick}>+</h3>
+                <h3 onClick={this.onShowClick}
+                    style={{cursor: 'pointer'}}>+</h3>
+                <h3 style={{
+                    cursor: 'pointer', float: 'right',
+                    color: 'red'
+                }} onClick={this.onDeleteClick}>X</h3>
                 {showContact ?
                     <ul className="list-group">
                         <li className="list-group-item">Email: {email}</li>
@@ -31,6 +41,7 @@ class Contact extends Component {
             </div>
         );
     }
+
 }
 
 export default Contact;

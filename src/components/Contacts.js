@@ -25,13 +25,27 @@ class Contacts extends Component {
         ]
     };
 
+    //Delete contact by filtering out unwanted id
+    deleteContact =(id) => {
+        const {contacts} = this.state;
+        const newContacts = contacts.filter(x =>
+        x.id !== id);
+        this.setState({
+        contacts: newContacts
+        })
+    };
+
+
     render() {
         const {contacts} = this.state;
         return (
             //Fragment allows to remove unwanted div or elements
             <React.Fragment>
                 {contacts.map(contact => (
-                    <Contact key={contact.id} contact={contact}/>
+                    <Contact key={contact.id} contact={contact}
+                            //allows function to access state of component
+                             deleteHandler={this.deleteContact.bind(this,
+                             contact.id)} />
                 ))}
             </React.Fragment>
         );
